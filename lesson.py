@@ -404,7 +404,6 @@ import random as r
 # print(inic2)
 import re
 
-
 # s = "Я ищу совпадения в 2021. И я их найду в 2 счета 16:24, 25:71"
 # req =r"[0-2][0-9][:][0-5][0-9]"
 # print(re.findall(req, s))
@@ -599,6 +598,7 @@ import re
 import os
 import os.path
 
+
 # for path, names, files in os.walk("work", topdown=False):
 #     if not names and not files:
 #         os.rmdir(path)
@@ -613,6 +613,79 @@ import os.path
 #     print("111")
 
 
-
+# class AutoClass:
+#     marka_auto = "marka"
+#     year_auto = "0000"
+#     fabryc_auto = "fabryc"
+#     power_auto = ""
+#     color_auto = ""
+#     price_auto = ""
+#
+#     def print_auto_class(self):
+#         print(" Information about auto".center(40, "*"))
+#         print(
+#             f"Название модели: {self.marka_auto} \nГод выпуска: {self.year_auto} \nПроизводитель: {self.fabryc_auto} \n"
+#             f"Мощность: {self.power_auto} \nЦвет машины: {self.color_auto} \nЦена: {self.price_auto}")
+#         print("=" * 40)
+#
+#     def info_auto_class(self, marka, year, fabryc, power, color, price):
+#         self.marka_auto = marka
+#         self.year_auto = year
+#         self.fabryc_auto = fabryc
+#         self.power_auto = power
+#         self.color_auto = color
+#         self.price_auto = price
+#
+#     def set_marka(self, marka):
+#         self.marka_auto = marka
+#
+#     def set_year(self, year):
+#         self.year_auto = year
+#
+#     def set_fybryc(self, fabryc):
+#         self.fabryc_auto = fabryc
+#
+#     def set_power(self, power):
+#         self.power_auto = power
+#
+#     def set_color(self, color):
+#         self.color_auto = color
+#
+#     def set_price(self, price):
+#         self.price_auto = price
+#
+#     def get_marka(self):
+#         return self.marka_auto
+#
+#     def get_year(self):
+#         return self.year_auto
+#
+#     def get_fybryc(self):
+#         return self.fabryc_auto
+#
+#     def get_power(self):
+#         return self.power_auto
+#
+#     def get_color(self):
+#         return self.color_auto
+#
+#     def get_price(self):
+#         return self.price_auto
+#
+#
+# auto1 = AutoClass()
+# auto1.print_auto_class()
+# auto1.info_auto_class("X5", "2021", "BMW", "530", "белый", "107345")
+# auto1.print_auto_class()
+# auto2 = AutoClass()
+# auto2.set_year("2020")
+# auto2.set_price("123678")
+# auto2.set_marka("X7")
+# auto2.set_fybryc("BMW")
+# auto2.set_color("red")
+# auto2.set_power("320")
+# auto2.print_auto_class()
+# print(auto2.get_year())
+# print(auto1.get_year())
 
 
