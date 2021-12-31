@@ -689,3 +689,25 @@ import os.path
 # print(auto1.get_year())
 
 
+class Kgfunt:
+
+    def __init__(self, kg):
+        self.__kg = kg
+
+    @property
+    def kg_funt(self):
+        return self.__kg * 2.205
+
+    @kg_funt.setter
+    def kg_funt(self, kg):
+        if type(kg) == int or type(kg) == float:
+            self.__kg = kg
+
+
+p1 = Kgfunt(10)
+print(p1.kg_funt)
+p1.kg_funt = 20
+print(p1.kg_funt)
+
+
+
