@@ -689,25 +689,66 @@ import os.path
 # print(auto1.get_year())
 
 
-class Kgfunt:
+# class Kgfunt:
+#
+#     def __init__(self, kg):
+#         self.__kg = kg
+#
+#     @property
+#     def kg_funt(self):
+#         return self.__kg * 2.205
+#
+#     @kg_funt.setter
+#     def kg_funt(self, kg):
+#         if type(kg) == int or type(kg) == float:
+#             self.__kg = kg
+#
+#
+# p1 = Kgfunt(10)
+# print(p1.kg_funt)
+# p1.kg_funt = 20
+# print(p1.kg_funt)
 
-    def __init__(self, kg):
-        self.__kg = kg
+# class Mat:
+#     @staticmethod
+#     def max_im(a, b, c, d):
+#         maxn = a
+#         if b > maxn:
+#             maxn = b
+#         if c > maxn:
+#             maxn = c
+#         if d > maxn:
+#             maxn = d
+#         return maxn
+#
+#     @staticmethod
+#     def min_im(a, b, c, d):
+#         minn = a
+#         if b < minn:
+#             minn = b
+#         if c < minn:
+#             minn = c
+#         if d < minn:
+#             minn = d
+#         return minn
+#
+#     @staticmethod
+#     def mid_arif(a, b, c, d):
+#         return round((a + b + c + d) / 4, 2)
+#
+#     @staticmethod
+#     def factorial(a):
+#         res = 1
+#         for i in range(1, a + 1):
+#             res *= i
+#         return res
+#
+#
+# print(Mat.max_im(3, 5, 7, 9))
+# print(Mat.min_im(3, 5, 7, 9))
+# print(Mat.mid_arif(3, 5, 7, 9))
+# print(Mat.factorial(5))
 
-    @property
-    def kg_funt(self):
-        return self.__kg * 2.205
-
-    @kg_funt.setter
-    def kg_funt(self, kg):
-        if type(kg) == int or type(kg) == float:
-            self.__kg = kg
-
-
-p1 = Kgfunt(10)
-print(p1.kg_funt)
-p1.kg_funt = 20
-print(p1.kg_funt)
 
 
 
