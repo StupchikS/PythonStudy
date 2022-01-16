@@ -20,7 +20,7 @@ class Liquid:
 class Alcohol(Liquid):
     def __init__(self, name, density, fortress):
         self.fortress = fortress
-        super(Alcohol, self).__init__(name, density)
+        super().__init__(name, density)
 
     def edit_fortress(self, fortress):
         self.fortress = fortress
