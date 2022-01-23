@@ -753,3 +753,182 @@ import os.path
 from abc import ABC, abstractmethod
 
 
+# class Clock:
+#     __DAY = 86400  # 24*60*60 - число секунд в одном дне
+#
+#     def __init__(self, secs: int):
+#         if not isinstance(secs, int):
+#             raise ValueError("Секунды должны быть целым числом")
+#         self.secs = secs % self.__DAY
+#
+#     def get_format_time(self):
+#         s = self.secs % 60  # секунды
+#         m = (self.secs // 60) % 60  # минуты
+#         h = (self.secs // 3600) % 24  # часы
+#         return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+#
+#     @staticmethod
+#     def __get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#     def __add__(self, other):
+#         if not isinstance(other, Clock):
+#             raise AttributeError("Правый операнд должен быть типом данных Clock")
+#         return Clock(self.secs + other.secs)
+#
+#     def __sub__(self, other):
+#         if not isinstance(other, Clock):
+#             raise AttributeError("Правый операнд должен быть типом данных Clock")
+#         return Clock(self.secs + other.secs)
+#
+#     def __eq__(self, other):
+#         return self.secs == other.secs
+#
+#     def __ne__(self, other):
+#         return self.secs != other.secs
+#
+#     def __lt__(self, other):
+#         return self.secs < other.secs
+#
+#     def __le__(self, other):
+#         return self.secs <= other.secs
+#
+#     def __gt__(self, other):
+#         return self.secs > other.secs
+#
+#     def __ge__(self, other):
+#         return self.secs >= other.secs
+#
+# c1 = Clock(100)
+# c2 = Clock(200)
+# print(c1.get_format_time())
+# print(c2.get_format_time())
+# c3 = Clock(300)
+# print(c3.get_format_time())
+# # c4 = c1 + c2 + c3
+# c1 += c2 + c3  # c1 = c1 + c2
+# print(c1.get_format_time())
+
+
+class Point3D:
+    CH = "Координата должна быть числом"
+    RIGHT = "Операнд должен быть экземпляром класса"
+    def __init__(self, x=0, y=0, z=0):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    @staticmethod
+    def __check_value(v):
+        return isinstance(v, (int, float))
+
+    @staticmethod
+    def __check0(ex):
+        if ex.x == 0 or ex.y == 0 or ez == 0:
+            raise ZeroDivisionError("на ноль делить нельзя")
+
+    def __str__(self):
+        return f"{self.__x}, {self.__y}, {self.__z}"
+
+    @property
+    def x(self):
+        return self.__x
+
+    @x.setter
+    def x(self, value):
+        if self.__check_value(value):
+            self.__x = value
+        else:
+            print(self.CH)
+
+    @property
+    def y(self):
+        return self.__y
+
+    @y.setter
+    def y(self, value):
+        if self.__check_value(value):
+            self.__y = value
+        else:
+            print(self.CH)
+
+    @property
+    def z(self):
+        return self.__z
+
+    @z.setter
+    def z(self, value):
+        if self.__check_value(value):
+            self.__z = value
+        else:
+            print(self.CH)
+
+    def __add__(self, other):
+        if not isinstance(other, Point3D):
+            raise ValueError(self.RIGHT)
+        else:
+            return Point3D(self.__x + other.__x, self.__y + other.__y, self.__z + other.__z)
+
+    def __sub__(self, other):
+        if not isinstance(other, Point3D):
+            raise ValueError(self.RIGHT)
+        else:
+            return Point3D(self.__x - other.__x, self.__y - other.__y, self.__z - other.__z)
+
+    def __mul__(self, other):
+        if not isinstance(other, Point3D):
+            raise ValueError(self.RIGHT)
+        else:
+            return Point3D(self.__x * other.__x, self.__y * other.__y, self.__z * other.__z)
+
+    def __truediv__(self, other):
+        if not isinstance(other, Point3D):
+            raise ValueError(self.RIGHT)
+        self.__check0(other)
+        return Point3D(self.__x / other.__x, self.__y / other.__y, self.__z / other.__z)
+
+    def __eq__(self, other):
+        if not isinstance(other, Point3D):
+            raise ValueError(self.RIGHT)
+        return Point3D(self.__x == other.__x, self.__y == other.__y, self.__z == other.__z)
+
+    def __getitem__(self, item):
+        if not isinstance(item, str):
+            raise ValueError("str nado")
+        elif item == "x":
+            return self.__x
+        elif item == "y":
+            return self.__y
+        elif item == "z":
+            return self.__z
+        else:
+            print("неверное значение ключа")
+
+    def __setitem__(self, key, value):
+        if not isinstance(key, str):
+            raise ValueError("str nado")
+        if self.__check_value(value):
+            if key == "x":
+                self.__x = value
+            if key == "y":
+                self.__y = value
+            if key == "z":
+                self.__z = value
+        else:
+            print("координаты должны быть числами")
+
+
+
+pt = Point3D(12, 15, 18)
+pt2 = Point3D(6, 3, 9)
+print(f"координаты 1 точки {pt}")
+print(f"координаты 2 точки {pt2}")
+pt3 = pt + pt2
+print(pt3)
+pt3 = pt - pt2
+print(pt3)
+pt3 = pt * pt2
+print(pt3)
+print("x =", pt["x"], "x2 =", pt2["x"])
+pt["x"] = 20
+print(pt)
