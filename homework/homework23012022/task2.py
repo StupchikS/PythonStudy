@@ -10,10 +10,10 @@ class Clock:
         self.__s = self.secs % 60
 
     def get_format_time(self):
-        s = self.secs % 60  # секунды
-        m = (self.secs // 60) % 60  # минуты
-        h = (self.secs // 3600) % 24  # часы
-        return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+        # s = self.secs % 60  # секунды
+        # m = (self.secs // 60) % 60  # минуты
+        # h = (self.secs // 3600) % 24  # часы
+        return f"{Clock.__get_form(self.__h)}:{Clock.__get_form(self.__m)}:{Clock.__get_form(self.__s)}"
 
     @staticmethod
     def __get_form(x):
