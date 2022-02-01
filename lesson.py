@@ -934,42 +934,147 @@ from abc import ABC, abstractmethod
 # print(pt)
 
 
-class Cat:
-    def __init__(self, name, age):
+# class Cat:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def info(self):
+#         return f"Я кот. Меня зовут {self.name}, мне {self.age}"
+#
+#     def sound(self):
+#         return f"{self.name} мявкает"
+#
+#
+# class Dog:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def info(self):
+#         return f"Я пес. Меня зовут {self.name}, мне {self.age}"
+#
+#     def sound(self):
+#         return f"{self.name} гавкает"
+#
+#
+# d1 = Dog("Мухтар", 4)
+# d2 = Cat("Пушок", 2.5)
+#
+# s = [d1, d2]
+# for i in s:
+#     print(i.info())
+#     print(i.sound())
+#
+#
+# class Message:
+#     _REGISTRY = {}
+#     def __init__(self, text):
+#         self.text = text
+#     @classmethod
+#     def register(cls, name):
+#         def decorator(klass):
+#             cls._REGISTRY[name] = klass
+#             return klass
+#         return decorator
+#     @classmethod
+#     def create(cls, message_type, text):
+#         klass = cls._REGISTRY.get(message_type)
+#         if klass is None:
+#             raise ValueError("Такого мессенджера нет.")
+#         print(text, end=" ")
+#         return klass(text)
+#
+# @Message.register('Telegram')
+# class TelegramMessage(Message):
+#     def send(self):
+#         print("(Telegram)")
+#
+# @Message.register('WhatsApp')
+# class WhatsAppMessage(Message):
+#     def send(self):
+#         print("(WhatsApp)")
+#
+# @Message.register('Viber')
+# class WhatsAppMessage(Message):
+#     def send(self):
+#         print("(Viber)")
+#
+# m1 = Message.create("Telegram", "text")
+# m1.send()
+# m2 = Message.create("WhatsApp", "new text")
+# m2.send()
+# m3 = Message.create("Viber", "text new text")
+# m3.send()
+
+
+# class ValidString:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if not isinstance(value, str):
+#             raise ValueError(f"error {self.__name}")
+#         instance.__dict__[self.__name] = value
+#
+#
+# class Person:
+#     name = ValidString()
+#     surname = ValidString()
+#
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#
+# p = Person("ivan", "Petrov")
+# print(p.name)
+# print(p.surname)
+# p.name = "Vala"
+# print(p.name)
+
+class ValidString:
+    def __set_name__(self, owner, name):
+        self.__name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.__name]
+
+    def __set__(self, instance, value):
+        if isinstance(value, int) and value > 0:
+            instance.__dict__[self.__name] = value
+        elif isinstance(value, str):
+            instance.__dict__[self.__name] = value
+        else:
+            raise ValueError(f"error {self.__name} or {self.__name} < 0")
+
+
+
+class Order:
+    name = ValidString()
+    price = ValidString()
+    count = ValidString()
+
+    def __init__(self, name, price, count):
         self.name = name
-        self.age = age
+        self.price = price
+        self.count = count
 
-    def info(self):
-        return f"Я кот. Меня зовут {self.name}, мне {self.age}"
-
-    def sound(self):
-        return f"{self.name} мявкает"
+    def send(self):
+        return self.count * self.price
 
 
-class Dog:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+p = Order("Apple", 5, 10)
+print(p.name)
+print(p.price)
 
-    def info(self):
-        return f"Я пес. Меня зовут {self.name}, мне {self.age}"
-
-    def sound(self):
-        return f"{self.name} гавкает"
-
-
-d1 = Dog("Мухтар", 4)
-d2 = Cat("Пушок", 2.5)
-
-s = [d1, d2]
-for i in s:
-    print(i.info())
-    print(i.sound())
-
-
-
-
-
+print(p.count)
+print(p.send())
+p2 = Order("pens", 5, -10)
+print(p2.send())
 
 
 
