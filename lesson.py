@@ -1036,45 +1036,54 @@ from abc import ABC, abstractmethod
 # p.name = "Vala"
 # print(p.name)
 
-class ValidString:
-    def __set_name__(self, owner, name):
-        self.__name = name
+# def isinstance(value, int):
+#     pass
+#
+#
+# class ValueError:
+#     pass
+#
+#
+# class ValidString:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if isinstance(value, int) and value > 0:
+#             instance.__dict__[self.__name] = value
+#         elif isinstance(value, str):
+#             instance.__dict__[self.__name] = value
+#         else:
+#             raise ValueError(f"error {self.__name} or {self.__name} < 0")
+#
+#
+#
+# class Order:
+#     name = ValidString()
+#     price = ValidString()
+#     count = ValidString()
+#
+#     def __init__(self, name, price, count):
+#         self.name = name
+#         self.price = price
+#         self.count = count
+#
+#     def send(self):
+#         return self.count * self.price
+#
+#
+# p = Order("Apple", 5, 10)
+# print(p.name)
+# print(p.price)
+#
+# print(p.count)
+# print(p.send())
+# p2 = Order("pens", 5, -10)
+# print(p2.send()
 
-    def __get__(self, instance, owner):
-        return instance.__dict__[self.__name]
-
-    def __set__(self, instance, value):
-        if isinstance(value, int) and value > 0:
-            instance.__dict__[self.__name] = value
-        elif isinstance(value, str):
-            instance.__dict__[self.__name] = value
-        else:
-            raise ValueError(f"error {self.__name} or {self.__name} < 0")
-
-
-
-class Order:
-    name = ValidString()
-    price = ValidString()
-    count = ValidString()
-
-    def __init__(self, name, price, count):
-        self.name = name
-        self.price = price
-        self.count = count
-
-    def send(self):
-        return self.count * self.price
-
-
-p = Order("Apple", 5, 10)
-print(p.name)
-print(p.price)
-
-print(p.count)
-print(p.send())
-p2 = Order("pens", 5, -10)
-print(p2.send())
 
 
 
