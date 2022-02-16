@@ -598,7 +598,6 @@ import re
 import os
 import os.path
 
-
 # for path, names, files in os.walk("work", topdown=False):
 #     if not names and not files:
 #         os.rmdir(path)
@@ -751,7 +750,6 @@ import os.path
 
 
 from abc import ABC, abstractmethod
-
 
 # class Clock:
 #     __DAY = 86400  # 24*60*60 - число секунд в одном дне
@@ -1084,17 +1082,96 @@ from abc import ABC, abstractmethod
 # p2 = Order("pens", 5, -10)
 # print(p2.send()
 
+# from bs4 import BeautifulSoup
+#
+#
+# # def get_copywriter(tag):
+# #     whois = tag.find("div", class_="whois")
+# #     if "Copywriter" in whois:
+# #         return tag
+# #     return None
+#
+#
+# f = open("index.html", encoding="utf-8").read()
+# soup = BeautifulSoup(f, "html.parser")
+# # row = soup.find_all("div", class_="row")[1].find_all("div", class_="links")
+# # row = soup.find_all("div", {"class": "name"})
+# # row = soup.find("div", text="Alena").find_parent(class_="row")
+# # row = soup.find("div", id="whois3").find_next_siblings()
+# # row = soup.find("div", id="whois3").find_previous_siblings()
+# # print(row)
+# # copiwriter = []
+# # row = soup.find_all("div", class_="row")
+# # for i in row:
+# #     cw = get_copywriter(i)
+# #     if cw:
+# #         copiwriter.append(cw)
+# # print(copiwriter)
+#
+#
+# # поиск всех зарплат
+#
+# def get_salary(s):
+#     pattern = r"\d+"
+#     res = re.findall(pattern, s)[0]
+#     print(res)
+#
+#
+# salary = soup.find_all("div", {"data-set": "salary"})
+# for i in salary:
+#     get_salary(i.text)
+# # print(salary)
+
+
+import requests
+from bs4 import BeautifulSoup
+import subprocess
+import csv
+
+#
+# rr = requests.get("https://ru.wordpress.org/")
+# print(rr.text)
+
+
+def get_html(url):
+    rr = requests.get(url)
+    return rr.text
+
+
+def refined(s):
+    res = re.sub(r"[\D+]", "", s)
+    return res
+
+
+def write_csv(data):
+    with open("plagins.csv", "a") as f:
+        writer = csv.writer(f)
+        writer.writerow(data["name"])
+
+
+def get_data(html):
+    soup = BeautifulSoup(html, "lxml")
+    p1 = soup.find_all("section", class_="plugin-section")[1]
+    plugins = p1.find_all("article")
+    for i in plugins:
+        name = i.find("h3").text
+        url = i.find("h3").find("a").get("href")
+        rating = i.find("span", class_="rating-count").find("a").text
+        rei = refined(rating)
+        print(name)
+        print(url)
+        print(rating)
+        print(rei)
+        # data = {"name": name, "url": url1, "rating": rei}
+        # write_csv(data)
 
 
 
+def main():
+    url = "https://ru.wordpress.org/plugins/"
+    get_data(get_html(url))
 
 
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    main()
 
