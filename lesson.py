@@ -1128,50 +1128,171 @@ from bs4 import BeautifulSoup
 import subprocess
 import csv
 
+
 #
 # rr = requests.get("https://ru.wordpress.org/")
 # print(rr.text)
 
+#
+# def get_html(url):
+#     rr = requests.get(url)
+#     return rr.text
+#
+#
+# def refined(s):
+#     res = re.sub(r"[\D+]", "", s)
+#     return res
+#
+#
+# def write_csv(data):
+#     with open("plagins.csv", "a") as f:
+#         writer = csv.writer(f)
+#         writer.writerow(data["name"])
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find_all("section", class_="plugin-section")[1]
+#     plugins = p1.find_all("article")
+#     for i in plugins:
+#         name = i.find("h3").text
+#         url = i.find("h3").find("a").get("href")
+#         rating = i.find("span", class_="rating-count").find("a").text
+#         rei = refined(rating)
+#         print(name)
+#         print(url)
+#         print(rating)
+#         print(rei)
+#         # data = {"name": name, "url": url1, "rating": rei}
+#         # write_csv(data)
+#
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins/"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == "__main__":
+#     main()
+#
+#
+#
+# from parse import Perser
+#
+#
+# def main():
+#     pars = Perser("https://www.ixbt.com/live/index/type/news/", "news.txt")
+#     pars.run()
+#
+#
+# if __name__ == "__main__":
+#     main()
+#
+#
+# x = 1
+# y = 2
+# z = 3
+#
+# a = [x, y, z]
+#
+# print("a", id(a))
+# print("a0", id(a[0]))
+# print("x", id(x))
 
-def get_html(url):
-    rr = requests.get(url)
-    return rr.text
+
+class Node:
+    def __init__(self, elem):
+        self.__data = elem
+        self.__next = None
+
+    def get_data(self):
+        return self.__data
+
+    def get_next(self):
+        return self.__next
+
+    def set_data(self, new_data):
+        self.__data = new_data
+
+    def set_next(self, new_next):
+        self.__next = new_next
 
 
-def refined(s):
-    res = re.sub(r"[\D+]", "", s)
-    return res
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def list_print(self):
+        val = self.head
+        while val is not None:
+            print(val.get_data(), end=" ")
+            val = val.get_next()
+        print()
+
+    def add(self, item):
+        tmp = Node(item)
+        tmp.set_next(self.head)
+        self.head = tmp
+
+    def append_add(self, item):
+        new_item = Node(item)
+        if self.head is None:
+            self.head = new_item
+            return
+        end = self.head
+        while end.get_next():  # is not None
+            end = end.get_next()
+        end.set_next(new_item)
+
+    def size(self):
+        count = 0
+        current = self.head
+        while current is not None:
+            count += 1
+            current = current.get_next()
+        return count
+
+    def insert(self, pos, item):
+        if pos > self.size():
+            raise IndexError("Индекс находится за пределами списка.")
+        current = self.head
+        previous = None
+        ind = 0
+        if pos == 0:
+            self.add(item)
+            return
+        else:
+            new_item = Node(item)
+            while ind < pos:
+                ind += 1
+                previous = current
+                current = current.get_next()
+            previous.set_next(new_item)
+            new_item.set_next(current)
+
+    def search(self, item):
+        pos = 0
+        current = self.head
+        while current is not None:
+            if current.get_data() == item:
+                print(f"{item} находится в односвязном списке по индексу {pos}.")
+                return
+            pos += 1
+            current = current.get_next()
+        print(f"{item} не находится в односвязном списке.")
 
 
-def write_csv(data):
-    with open("plagins.csv", "a") as f:
-        writer = csv.writer(f)
-        writer.writerow(data["name"])
 
+temp = LinkedList()
+temp.head = Node(93)
 
-def get_data(html):
-    soup = BeautifulSoup(html, "lxml")
-    p1 = soup.find_all("section", class_="plugin-section")[1]
-    plugins = p1.find_all("article")
-    for i in plugins:
-        name = i.find("h3").text
-        url = i.find("h3").find("a").get("href")
-        rating = i.find("span", class_="rating-count").find("a").text
-        rei = refined(rating)
-        print(name)
-        print(url)
-        print(rating)
-        print(rei)
-        # data = {"name": name, "url": url1, "rating": rei}
-        # write_csv(data)
-
-
-
-def main():
-    url = "https://ru.wordpress.org/plugins/"
-    get_data(get_html(url))
-
-
-if __name__ == "__main__":
-    main()
-
+temp.add(31)
+temp.add(77)
+temp.append_add(27)
+temp.append_add(54)
+temp.insert(2, 17)
+temp.list_print()
+temp.search(64)
+temp.search(17)
+print(temp.size())
