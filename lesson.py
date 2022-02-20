@@ -1200,99 +1200,272 @@ import csv
 # print("a0", id(a[0]))
 # print("x", id(x))
 
+#
+# class Node:
+#     def __init__(self, elem):
+#         self.__data = elem
+#         self.__next = None
+#
+#     def get_data(self):
+#         return self.__data
+#
+#     def get_next(self):
+#         return self.__next
+#
+#     def set_data(self, new_data):
+#         self.__data = new_data
+#
+#     def set_next(self, new_next):
+#         self.__next = new_next
+#
+#
+# class LinkedList:
+#     def __init__(self):
+#         self.head = None
+#
+#     def list_print(self):
+#         val = self.head
+#         while val is not None:
+#             print(val.get_data(), end=" ")
+#             val = val.get_next()
+#         print()
+#
+#     def add(self, item):
+#         tmp = Node(item)
+#         tmp.set_next(self.head)
+#         self.head = tmp
+#
+#     def append_add(self, item):
+#         new_item = Node(item)
+#         if self.head is None:
+#             self.head = new_item
+#             return
+#         end = self.head
+#         while end.get_next():  # is not None
+#             end = end.get_next()
+#         end.set_next(new_item)
+#
+#     def size(self):
+#         count = 0
+#         current = self.head
+#         while current is not None:
+#             count += 1
+#             current = current.get_next()
+#         return count
+#
+#     def insert(self, pos, item):
+#         if pos > self.size():
+#             raise IndexError("Индекс находится за пределами списка.")
+#         current = self.head
+#         previous = None
+#         ind = 0
+#         if pos == 0:
+#             self.add(item)
+#             return
+#         else:
+#             new_item = Node(item)
+#             while ind < pos:
+#                 ind += 1
+#                 previous = current
+#                 current = current.get_next()
+#             previous.set_next(new_item)
+#             new_item.set_next(current)
+#
+#     def search(self, item):
+#         pos = 0
+#         current = self.head
+#         while current is not None:
+#             if current.get_data() == item:
+#                 print(f"{item} находится в односвязном списке по индексу {pos}.")
+#                 return True
+#             pos += 1
+#             current = current.get_next()
+#         print(f"{item} не находится в односвязном списке.")
+#         return False
+#
+#     def pop(self, position=None):
+#         ret = None
+#         current = self.head
+#         if position is None:
+#             ret = current.get_data()
+#             self.head = current.get_next()
+#         elif position > self.size() - 1:
+#             raise IndexError("Индекс находится за пределами списка.")
+#         else:
+#             pos = 0
+#             previous = None
+#             while pos < position:
+#                 previous = current
+#                 current = current.get_next()
+#                 pos += 1
+#                 ret = current.get_data()
+#             previous.set_next(current.get_next())
+#
+#     def reverse(self):
+#         p = self.head
+#         self.head = None
+#         while p is not None:
+#             p0, p = p, p.get_next()
+#             p0.set_next(self.head)
+#             self.head = p0
+#
+#
+# temp = LinkedList()
+# temp.head = Node(93)
+#
+# temp.add(31)
+# temp.add(77)
+# temp.append_add(27)
+# temp.append_add(54)
+# temp.insert(2, 17)
+# temp.list_print()
+# temp.search(64)
+# temp.search(17)
+# print(temp.size())
+# temp.reverse()
+# print(temp.list_print())
+#
+# class Node:
+#     def __init__(self, elem, nxt=None, prev=None):
+#         self.data = elem
+#         self.prev = prev
+#         self.next = nxt
+#
+#
+# class DoublyLinkedList:
+#     def __init__(self, head=None, tail=None):
+#         self.head = head
+#         self.tail = tail
+#
+#     def add(self, elem):
+#         if self.head is None:
+#             item = Node(elem)
+#             self.head = item
+#             self.tail = self.head
+#         else:
+#             item = Node(elem, self.head)
+#             self.head.prev = item
+#             self.head = self.head.prev
+#
+#     def print(self):
+#         val = self.head
+#         print("Список ссылок: ")
+#         while val:
+#             print(val.data)
+#             val = val.next
+#         print()
+#
+#     def is_empty(self):
+#         return self.head is None and self.tail is None
+#
+#     def append(self, elem):
+#         if self.tail is None:
+#             self.add(elem)
+#         else:
+#             item = Node(elem, None, self.tail)
+#             self.tail.next = item
+#             self.tail = item
+#
+#     def pop(self):
+#         if self.head == self.tail:
+#             self.head = self.tail = None
+#             return
+#         self.tail = self.tail.prev
+#         self.tail = None
+#
+#     def shift(self):
+#         if self.head == self.tail:
+#             self.head = self.tail = None
+#             return
+#         self.head = self.head.next
+#         self.head.prev = None
+#
+# links = [
+#     "http://site.ru",
+#     "http://site.ru/news",
+#     "http://site.ru/contacts",
+#     "http://site.ru/about"
+# ]
+# link = DoublyLinkedList()
+# for name in links:
+#     link.add(name)
+# link.print()
+# #
+# # while True:
+# #     if not link.is_empty():
+# #         link.print()
+# #     else:
+# #         print("Empty")
+# #     print("Menu")
+# #     print("1 - add element in head")
+# #     print("2 - add element in tail")
+# #     print("0 - exit")
+# #     operator = int(input("-> "))
+# #     if operator == 1:
+# #         a = input("new -> ")
+# #         link.add(a)
+# #     elif operator == 1:
+# #         a = input("new -> ")
+# #         link.append(a)
+# #     elif operator == 0:
+# #         print("Good Bay")
+# #         break
+#
+# link.shift()
+# link.print()
+#
+# class Stack:
+#     def __init__(self):
+#         self.stack = []
+#
+#     def __str__(self):
+#         return f"{self.stack}"
+#
+#     def push(self, item):
+#         self.stack.append(item)
+#
+#     def size(self):
+#         return len(self.stack)
+#
+#     def pop(self):
+#         if len(self.stack) == 0:
+#             return None
+#         return self.stack.pop()
+#
+#     def is_empty(self):
+#         return self.stack == []
+#
+#
+#
+# a = Stack()
+# for i in range(1, 6):
+#     a.push(i)
+#
+# print(a)
+# print(a.size())
+# print(a.pop())
+# print(a)
 
-class Node:
-    def __init__(self, elem):
-        self.__data = elem
-        self.__next = None
 
-    def get_data(self):
-        return self.__data
-
-    def get_next(self):
-        return self.__next
-
-    def set_data(self, new_data):
-        self.__data = new_data
-
-    def set_next(self, new_next):
-        self.__next = new_next
-
-
-class LinkedList:
+class Queue:
     def __init__(self):
-        self.head = None
+        self.queue = []
 
-    def list_print(self):
-        val = self.head
-        while val is not None:
-            print(val.get_data(), end=" ")
-            val = val.get_next()
-        print()
+    def __str__(self):
+        return f"{self.queue}"
 
-    def add(self, item):
-        tmp = Node(item)
-        tmp.set_next(self.head)
-        self.head = tmp
-
-    def append_add(self, item):
-        new_item = Node(item)
-        if self.head is None:
-            self.head = new_item
-            return
-        end = self.head
-        while end.get_next():  # is not None
-            end = end.get_next()
-        end.set_next(new_item)
+    def push(self, item):
+        self.queue.append(item)
 
     def size(self):
-        count = 0
-        current = self.head
-        while current is not None:
-            count += 1
-            current = current.get_next()
-        return count
+        return len(self.queue)
 
-    def insert(self, pos, item):
-        if pos > self.size():
-            raise IndexError("Индекс находится за пределами списка.")
-        current = self.head
-        previous = None
-        ind = 0
-        if pos == 0:
-            self.add(item)
-            return
-        else:
-            new_item = Node(item)
-            while ind < pos:
-                ind += 1
-                previous = current
-                current = current.get_next()
-            previous.set_next(new_item)
-            new_item.set_next(current)
+    def pop(self):
+        if len(self.queue) == 0:
+            return None
+        return self.queue.pop(0)
 
-    def search(self, item):
-        pos = 0
-        current = self.head
-        while current is not None:
-            if current.get_data() == item:
-                print(f"{item} находится в односвязном списке по индексу {pos}.")
-                return
-            pos += 1
-            current = current.get_next()
-        print(f"{item} не находится в односвязном списке.")
+    def is_empty(self):
+        return self.queue == []
 
 
-
-temp = LinkedList()
-temp.head = Node(93)
-
-temp.add(31)
-temp.add(77)
-temp.append_add(27)
-temp.append_add(54)
-temp.insert(2, 17)
-temp.list_print()
-temp.search(64)
-temp.search(17)
-print(temp.size())
