@@ -27,7 +27,7 @@ class Controller:
             except KeyError:
                 self.user_interface.show_uncurrect_error(film_name)
             else:
-                self.user_interface.show_single_article(film)
+                self.user_interface.show_single_film(film)
         elif answer == "4":
             film_name = self.user_interface.get_user_film()
             try:
@@ -35,7 +35,7 @@ class Controller:
             except KeyError:
                 self.user_interface.show_incorrect_answer(film_name)
             else:
-                self.user_interface.remove_single_article(name)
+                self.user_interface.remove_single_film(name)
         elif answer == "q":
             self.film_model.save_data()
         else:

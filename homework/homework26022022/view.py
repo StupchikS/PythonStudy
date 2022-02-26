@@ -50,7 +50,7 @@ class UserInterface:
         return user_choose
 
     @add_title(" Просмотр выбранного фильма ")
-    def show_single_article(self, film):
+    def show_single_film(self, film):
         for key in film:
             print(f"{key} title - {film[key]}")
 
@@ -59,7 +59,7 @@ class UserInterface:
         print(f"У Вас нет такого фильма {film}")
 
     @add_title(" Удаление ")
-    def remove_single_article(self, film):
+    def remove_single_film(self, film):
         print(f"Фильм {film} был удален")
 
     @add_title(" Ошибка выбора меню ")
