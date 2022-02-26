@@ -1446,26 +1446,28 @@ import csv
 # print(a.pop())
 # print(a)
 
+#
+# class Queue:
+#     def __init__(self):
+#         self.queue = []
+#
+#     def __str__(self):
+#         return f"{self.queue}"
+#
+#     def push(self, item):
+#         self.queue.append(item)
+#
+#     def size(self):
+#         return len(self.queue)
+#
+#     def pop(self):
+#         if len(self.queue) == 0:
+#             return None
+#         return self.queue.pop(0)
+#
+#     def is_empty(self):
+#         return self.queue == []
 
-class Queue:
-    def __init__(self):
-        self.queue = []
 
-    def __str__(self):
-        return f"{self.queue}"
-
-    def push(self, item):
-        self.queue.append(item)
-
-    def size(self):
-        return len(self.queue)
-
-    def pop(self):
-        if len(self.queue) == 0:
-            return None
-        return self.queue.pop(0)
-
-    def is_empty(self):
-        return self.queue == []
 
 
